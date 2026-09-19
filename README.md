@@ -131,18 +131,6 @@ Frontend پروژه با **Django Templates** و **CSS** ساخته شده و ب
 
 ---
 
-## 📸 تصاویر پروژه
-
-| صفحه اصلی | داشبورد مشتری | داشبورد ارائه‌دهنده |
-|:---:|:---:|:---:|
-| ![Homepage](screenshots/homepage.png) | ![Customer Dashboard](screenshots/customer-dashboard.png) | ![Provider Dashboard](screenshots/provider-dashboard.png) |
-
-| تقویم ارائه‌دهنده | مدیریت خدمات | Swagger UI |
-|:---:|:---:|:---:|
-| ![Calendar](screenshots/calendar.png) | ![Service Types](screenshots/service-types.png) | ![Swagger](screenshots/swagger.png) |
-
----
-
 ## 🚀 نصب و اجرا
 
 ### پیش‌نیازها
