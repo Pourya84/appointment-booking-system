@@ -1,4 +1,3 @@
-```markdown
 # 📅 Appointment Booking System
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
@@ -108,7 +107,6 @@ Frontend پروژه با **Django Templates** و **CSS** ساخته شده و ب
 
 ## 🏗️ ساختار پروژه
 
-```
 appointment-booking-system/
 │
 ├── core/
