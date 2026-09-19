@@ -105,57 +105,6 @@ Frontend پروژه با **Django Templates** و **CSS** ساخته شده و ب
 
 ---
 
-## 🏗️ ساختار پروژه
-
-appointment-booking-system/
-│
-├── core/
-│ ├── settings.py
-│ └── urls.py
-│
-├── users/
-│ ├── models.py
-│ ├── views.py
-│ ├── forms.py
-│ ├── managers.py
-│ ├── decorators.py
-│ └── urls.py
-│
-├── appointments/
-│ ├── api/
-│ │ └── v1/
-│ │ ├── views.py
-│ │ ├── serializers.py
-│ │ ├── permissions.py
-│ │ └── urls.py
-│ │
-│ ├── models/
-│ │ ├── appointment.py
-│ │ ├── schedule.py
-│ │ └── service_type.py
-│ │
-│ ├── services.py
-│ ├── repositories.py
-│ ├── views_html.py
-│ ├── admin.py
-│ ├── urls.py
-│ └── tests/
-│
-├── notifications/
-│ ├── models.py
-│ ├── signals.py
-│ ├── views.py
-│ ├── context_processors.py
-│ └── urls.py
-│
-├── templates/
-├── static/
-├── manage.py
-└── requirements.txt
-
-
----
-
 ## 🧩 معماری و الگوهای استفاده‌شده
 
 در پروژه از چند الگوی رایج برای جداسازی مسئولیت‌ها استفاده شده است:
@@ -199,33 +148,30 @@ cd appointment-booking-system
 
 ۲. ساخت محیط مجازی
 Windows:
-
-bash
 python -m venv venv
 venv\Scripts\activate
-Linux / macOS:
 
-bash
+Linux / macOS:
 python3 -m venv venv
 source venv/bin/activate
+
 ۳. نصب وابستگی‌ها
-bash
 pip install -r requirements.txt
+
 ۴. تنظیم PostgreSQL
 یک دیتابیس PostgreSQL ایجاد کنید و اطلاعات اتصال دیتابیس را در تنظیمات پروژه قرار دهید. سپس Migrationها را اجرا کنید:
 
-bash
 python manage.py migrate
-۵. ایجاد کاربر ادمین
-bash
-python manage.py createsuperuser
-۶. اجرای پروژه
-bash
-python manage.py runserver
-پروژه پس از اجرا از آدرس زیر در دسترس خواهد بود:
 
-text
+۵. ایجاد کاربر ادمین
+python manage.py createsuperuser
+
+۶. اجرای پروژه
+python manage.py runserver
+
+پروژه پس از اجرا از آدرس زیر در دسترس خواهد بود:
 http://127.0.0.1:8000/
+```
 📡 REST API
 Base URL: /api/v1/
 
