@@ -6,9 +6,7 @@
 
 > سامانه رزرو نوبت ساخته‌شده با **Django** و **Django REST Framework**
 
-این پروژه یک سامانه رزرو نوبت است که در آن کاربران می‌توانند به عنوان مشتری یا ارائه‌دهنده خدمات فعالیت کنند.
-
-هدف پروژه، تمرین و پیاده‌سازی بخش‌هایی از یک پروژه نسبتاً واقعی Django بوده است؛ از جمله احراز هویت و سطح دسترسی، مدیریت نوبت‌ها، طراحی REST API، جداسازی منطق کسب‌وکار، تست‌نویسی و کار با PostgreSQL.
+این پروژه یک سامانه رزرو نوبت است که در آن کاربران می‌توانند به عنوان مشتری یا ارائه‌دهنده خدمات فعالیت کنند. هدف پروژه، تمرین و پیاده‌سازی بخش‌هایی از یک پروژه نسبتاً واقعی Django بوده است؛ از جمله احراز هویت و سطح دسترسی، مدیریت نوبت‌ها، طراحی REST API، جداسازی منطق کسب‌وکار، تست‌نویسی و کار با PostgreSQL.
 
 Frontend پروژه با **Django Templates** و **CSS** ساخته شده و بخش‌های اصلی بدون JavaScript پیاده‌سازی شده‌اند.
 
@@ -24,9 +22,7 @@ Frontend پروژه با **Django Templates** و **CSS** ساخته شده و ب
 | 👨‍⚕️ **Provider** | مدیریت خدمات، ساعات کاری و نوبت‌ها |
 | 🛡️ **Admin** | مدیریت کاربران، ارائه‌دهندگان و نوبت‌ها |
 
-برای بخش API از **Django REST Framework** استفاده شده و APIها با **Swagger / ReDoc** مستند شده‌اند.
-
-در طراحی پروژه سعی شده منطق کسب‌وکار از Viewها جدا شود و ساختار پروژه تا حد امکان ماژولار و قابل توسعه باشد.
+برای بخش API از **Django REST Framework** استفاده شده و APIها با **Swagger / ReDoc** مستند شده‌اند. در طراحی پروژه سعی شده منطق کسب‌وکار از Viewها جدا شود و ساختار پروژه تا حد امکان ماژولار و قابل توسعه باشد.
 
 ---
 
@@ -103,6 +99,8 @@ Frontend پروژه با **Django Templates** و **CSS** ساخته شده و ب
 | Testing | Django Test Framework |
 | Architecture | Service Layer / Repository Pattern |
 
+> در حال حاضر پروژه با **PostgreSQL** اجرا می‌شود و برای توسعه‌ی سریع‌تر می‌توان آن را به SQLite نیز منتقل کرد.
+
 ---
 
 ## 🧩 معماری و الگوهای استفاده‌شده
@@ -133,10 +131,22 @@ Frontend پروژه با **Django Templates** و **CSS** ساخته شده و ب
 
 ---
 
+## 📸 تصاویر پروژه
+
+| صفحه اصلی | داشبورد مشتری | داشبورد ارائه‌دهنده |
+|:---:|:---:|:---:|
+| ![Homepage](screenshots/homepage.png) | ![Customer Dashboard](screenshots/customer-dashboard.png) | ![Provider Dashboard](screenshots/provider-dashboard.png) |
+
+| تقویم ارائه‌دهنده | مدیریت خدمات | Swagger UI |
+|:---:|:---:|:---:|
+| ![Calendar](screenshots/calendar.png) | ![Service Types](screenshots/service-types.png) | ![Swagger](screenshots/swagger.png) |
+
+---
+
 ## 🚀 نصب و اجرا
 
 ### پیش‌نیازها
-- Python 3.10+
+- Python 3.10 یا بالاتر
 - PostgreSQL
 - Git
 
@@ -144,34 +154,35 @@ Frontend پروژه با **Django Templates** و **CSS** ساخته شده و ب
 ```bash
 git clone https://github.com/Pourya84/appointment-booking-system.git
 cd appointment-booking-system
-
-
 ۲. ساخت محیط مجازی
-Windows:
+ویندوز:
+
+bash
 python -m venv venv
 venv\Scripts\activate
-
 Linux / macOS:
+
+bash
 python3 -m venv venv
 source venv/bin/activate
-
 ۳. نصب وابستگی‌ها
+bash
 pip install -r requirements.txt
-
 ۴. تنظیم PostgreSQL
-یک دیتابیس PostgreSQL ایجاد کنید و اطلاعات اتصال دیتابیس را در تنظیمات پروژه قرار دهید. سپس Migrationها را اجرا کنید:
+یک دیتابیس PostgreSQL ایجاد کنید و اطلاعات اتصال دیتابیس را در settings.py قرار دهید. سپس Migrationها را اجرا کنید:
 
+bash
 python manage.py migrate
-
 ۵. ایجاد کاربر ادمین
+bash
 python manage.py createsuperuser
-
 ۶. اجرای پروژه
+bash
 python manage.py runserver
+بعد از اجرای سرور، پروژه از آدرس زیر در دسترس خواهد بود:
 
-پروژه پس از اجرا از آدرس زیر در دسترس خواهد بود:
+text
 http://127.0.0.1:8000/
-```
 📡 REST API
 Base URL: /api/v1/
 
@@ -189,6 +200,8 @@ GET	/service-types/	لیست خدمات
 Swagger UI	/swagger/
 ReDoc	/redoc/
 OpenAPI JSON	/swagger.json
+برای مشاهده لیست کامل endpointها، پارامترهای درخواست و نحوه احراز هویت، بهتر است از Swagger استفاده شود.
+
 🧪 اجرای تست‌ها
 اجرای تمام تست‌ها:
 
@@ -210,10 +223,61 @@ python manage.py test notifications
 
 bash
 python manage.py test appointments.tests.test_edge_cases
-
-
+📁 ساختار پروژه
+text
+appointment-booking-system/
+│
+├── core/                  # تنظیمات اصلی پروژه
+│   ├── settings.py
+│   └── urls.py
+│
+├── users/                 # مدیریت کاربران
+│   ├── models.py
+│   ├── views.py
+│   ├── forms.py
+│   ├── managers.py
+│   ├── decorators.py
+│   └── urls.py
+│
+├── appointments/          # هسته اصلی پروژه
+│   ├── api/
+│   │   └── v1/
+│   │       ├── views.py
+│   │       ├── serializers.py
+│   │       ├── permissions.py
+│   │       └── urls.py
+│   ├── models/
+│   │   ├── appointment.py
+│   │   ├── schedule.py
+│   │   └── service_type.py
+│   ├── services.py
+│   ├── repositories.py
+│   ├── views_html.py
+│   ├── admin.py
+│   ├── urls.py
+│   └── tests/
+│
+├── notifications/         # سیستم اعلان
+│   ├── models.py
+│   ├── signals.py
+│   ├── views.py
+│   ├── context_processors.py
+│   └── urls.py
+│
+├── templates/             # قالب‌های HTML
+├── static/                # فایل‌های استاتیک
+├── manage.py
+├── requirements.txt
+└── README.md
+توضیح پوشه‌ها
+پوشه	توضیح
+core/	تنظیمات اصلی پروژه و مسیرهای سطح بالا.
+users/	مدیریت کاربران، احراز هویت، نقش‌ها و پروفایل.
+appointments/	هسته اصلی پروژه شامل مدل‌ها، سرویس‌ها، Repositoryها، API و Viewهای HTML.
+notifications/	سیستم اعلان داخلی با استفاده از Signals و Context Processor.
+templates/	قالب‌های HTML پروژه.
+static/	فایل‌های استاتیک مانند CSS.
 🌐 مسیرهای اصلی
-
 بخش	مسیر
 Home	/
 Django Admin	/admin/
@@ -229,3 +293,51 @@ Password Change	/password-change/
 Password Reset	/password-reset/
 Swagger	/swagger/
 ReDoc	/redoc/
+🔍 چیزهایی که در این پروژه تمرین کردم
+در این پروژه بیشتر از اینکه فقط روی ساختن صفحات تمرکز کنم، سعی کردم با بخش‌هایی از توسعه واقعی یک پروژه Django کار کنم:
+
+طراحی Modelها و ارتباط بین آن‌ها
+
+Authentication و Permission با نقش‌های متفاوت
+
+طراحی REST API نسخه‌بندی‌شده
+
+نوشتن Serializer و Validator
+
+جداسازی منطق کسب‌وکار از Viewها (Service Layer)
+
+کپسوله‌سازی Queryها با Repository Pattern
+
+پیاده‌سازی تقویم با Strategy Pattern
+
+ایجاد اعلان با Observer Pattern (Signals)
+
+مستندسازی API با Swagger
+
+تست‌نویسی برای Model، Service، API و Viewها
+
+رعایت ساختار ماژولار برای پروژه
+
+🔮 برنامه‌های بعدی
+چند موردی که قصد دارم در ادامه روی پروژه انجام بدهم:
+
+□ اضافه کردن Docker و docker-compose
+□ افزایش پوشش تست‌ها
+□ اضافه کردن GitHub Actions و CI
+□ آماده‌سازی پروژه برای Deployment
+□ افزودن Redis برای Cache و Celery برای کارهای زمان‌بندی‌شده
+□ پیاده‌سازی احراز هویت JWT برای API
+□ بهبود رابط کاربری و افزودن JavaScript در بخش‌های ضروری
+🤝 مشارکت
+این پروژه در درجه اول یک پروژه شخصی و Portfolio است، اما اگر پیشنهادی برای بهتر شدن کد یا ساختار پروژه دارید، خوشحال می‌شوم آن را ببینم.
+
+📄 مجوز
+این پروژه تحت مجوز MIT منتشر شده است. برای جزئیات بیشتر فایل LICENSE را ببینید.
+
+📬 ارتباط با من
+📧 Email: amirkhah1384@gmail.com
+
+💬 Telegram: @proGrammerORproGamer
+
+
+در حال حاضر به دنبال فرصت‌های شغلی Junior Django / Python Backend هستم و از فرصت‌های Remote، Full-time و Freelance استقبال می‌کنم.
