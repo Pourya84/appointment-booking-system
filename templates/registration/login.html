@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}ورود{% endblock %}
+{% block content %}
+<h2>ورود به سامانه</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="ورود">
+</form>
+<p><a href="{% url 'users:password_reset' %}">🔐 رمز عبور خود را فراموش کرده‌اید؟</a></p>
+<p><a href="{% url 'users:signup' %}">ثبت نام نکرده‌اید؟</a></p>
+<p><a href="{% url 'users:signup_provider' %}">ثبت نام ارائه‌دهنده</a></p>
+{% endblock %}

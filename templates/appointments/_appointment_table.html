@@ -1,0 +1,26 @@
+{% if appointments %}
+<table>
+    <thead><tr><th>مشتری</th><th>زمان</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+    <tbody>
+        {% for apt in appointments %}
+        <tr>
+            <td>{{ apt.customer.username }}</td>
+            <td>{{ apt.time }}</td>
+            <td>{{ apt.get_status_display }}</td>
+            <td>
+                {% if apt.status == 'pending' %}
+                <form method="post" action="{% url 'confirm_appointment' apt.id %}" style="display:inline;">
+                    {% csrf_token %}<button type="submit" class="btn">تایید</button>
+                </form>
+                <form method="post" action="{% url 'reject_appointment' apt.id %}" style="display:inline;">
+                    {% csrf_token %}<button type="submit" class="btn-danger">رد</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>هیچ نوبتی در این تاریخ وجود ندارد.</p>
+{% endif %}

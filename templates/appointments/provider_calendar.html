@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}تقویم نوبت‌ها{% endblock %}
+{% block content %}
+<h2>📅 تقویم نوبت‌های من</h2>
+<div>
+    <a href="?view=day" class="btn">روز</a>
+    <a href="?view=week" class="btn">هفته</a>
+    <a href="?view=month" class="btn">ماه</a>
+</div>
+<hr>
+
+{% if view_type == 'day' %}
+<h3>نوبت‌های امروز ({{ start_date }})</h3>
+{% for date, appts in date_appointments %}
+{% if date == start_date %}
+{% include 'appointments/_appointment_table.html' with appointments=appts %}
+{% endif %}
+{% endfor %}
+
+{% elif view_type == 'week' %}
+<h3>هفته جاری ({{ start_date }} تا {{ end_date }})</h3>
+<table>
+    <thead>
+        <tr>
+            <th>تاریخ</th>
+            <th>نوبت‌ها</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for date, appts in date_appointments %}
+        <tr>
+            <td>{{ date }}</td>
+            <td>{% include 'appointments/_appointment_list.html' with appointments=appts %}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">هیچ نوبتی در این بازه وجود ندارد.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% elif view_type == 'month' %}
+<h3>ماه جاری ({{ start_date }} تا {{ end_date }})</h3>
+<table>
+    <thead>
+        <tr>
+            <th>تاریخ</th>
+            <th>نوبت‌ها</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for date, appts in date_appointments %}
+        <tr>
+            <td>{{ date }}</td>
+            <td>{% include 'appointments/_appointment_list.html' with appointments=appts %}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">هیچ نوبتی در این ماه وجود ندارد.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<p><a href="{% url 'provider_dashboard' %}">← بازگشت به داشبورد ساده</a></p>
+{% endblock %}

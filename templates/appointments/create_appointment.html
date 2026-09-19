@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}رزرو نوبت{% endblock %}
+{% block content %}
+<h2>رزرو نوبت جدید</h2>
+<form method="get" style="margin-bottom: 20px;">
+    <label>ارائه‌دهنده:</label>
+    <select name="provider">
+        <option value="">انتخاب کنید</option>
+        {% for p in providers %}
+            <option value="{{ p.id }}" {% if selected_provider_id|stringformat:'s' == p.id|stringformat:'s' %}selected{% endif %}>
+                {{ p.username }}
+            </option>
+        {% endfor %}
+    </select>
+    <label>تاریخ:</label>
+    <input type="date" name="date" value="{{ selected_date|default:'' }}">
+    <input type="submit" value="نمایش زمان‌های آزاد">
+</form>
+
+{% if available_slots is not None %}
+    {% if available_slots %}
+        <form method="post" action="{% url 'create_appointment_step2' %}">
+            {% csrf_token %}
+            <input type="hidden" name="provider" value="{{ selected_provider_id }}">
+            <input type="hidden" name="date" value="{{ selected_date }}">
+            <label>زمان:</label>
+            <select name="time" required>
+                {% for slot in available_slots %}
+                    <option value="{{ slot }}">{{ slot }}</option>
+                {% endfor %}
+            </select>
+            <label>نوع خدمت:</label>
+            <select name="service_type">
+                <option value="">بدون خدمت خاص</option>
+                {% for st in service_types %}
+                    <option value="{{ st.id }}">{{ st.name }} - {{ st.price }} تومان</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="رزرو نوبت">
+        </form>
+    {% else %}
+        <p style="color: red;">❌ هیچ زمان آزادی برای این ارائه‌دهنده در تاریخ مورد نظر وجود ندارد.</p>
+    {% endif %}
+{% endif %}
+<p><a href="{% url 'customer_dashboard' %}">← بازگشت به داشبورد</a></p>
+{% endblock %}

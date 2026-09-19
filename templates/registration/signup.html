@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}ثبت نام{% endblock %}
+{% block content %}
+<h2>ثبت نام مشتری جدید</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>نام کاربری:</label>
+    <input type="text" name="username" required><br>
+
+    <label>ایمیل:</label>
+    <input type="email" name="email" required placeholder="example@gmail.com"><br>
+
+    <label>رمز عبور:</label>
+    <input type="password" name="password1" required><br>
+
+    <label>تکرار رمز:</label>
+    <input type="password" name="password2" required><br>
+
+    <input type="submit" value="ثبت نام">
+</form>
+<p>قبلاً ثبت نام کرده‌اید؟ <a href="{% url 'login' %}">ورود</a></p>
+{% endblock %}

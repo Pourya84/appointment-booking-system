@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}حذف خدمت{% endblock %}
+{% block content %}
+<h2>⚠️ تأیید حذف</h2>
+<p>آیا از حذف خدمت "{{ service.name }}" مطمئن هستید؟</p>
+<p>در صورت حذف، این خدمت از تمام نوبت‌های موجود حذف نخواهد شد (فقط خود خدمت حذف می‌شود و نوبت‌ها بدون خدمت می‌مانند).</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn-danger">بله، حذف شود</button>
+    <a href="{% url 'manage_service_types' %}" class="btn">انصراف</a>
+</form>
+{% endblock %}

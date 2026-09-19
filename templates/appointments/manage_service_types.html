@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}مدیریت انواع خدمات{% endblock %}
+{% block content %}
+<h2>📋 مدیریت انواع خدمات من</h2>
+<a href="{% url 'add_service_type' %}" class="btn">➕ افزودن خدمت جدید</a>
+<table>
+    <thead>
+        <tr><th>نام خدمت</th><th>مدت (دقیقه)</th><th>قیمت (تومان)</th><th>عملیات</th></tr>
+    </thead>
+    <tbody>
+        {% for st in service_types %}
+        <tr>
+            <td>{{ st.name }}</a></td>
+            <td>{{ st.duration_minutes }}</a></td>
+            <td>{{ st.price }}</a></td>
+            <td>
+                <a href="{% url 'edit_service_type' st.id %}" class="btn">✏️ ویرایش</a>
+                <form method="post" action="{% url 'delete_service_type' st.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-danger">🗑 حذف</button>
+                </form>
+            </a>
+        </a>
+        {% empty %}
+        <tr><td colspan="4">هیچ خدمتی ثبت نشده است.</a></a>
+        {% endfor %}
+    </tbody>
+</table>
+<p><a href="{% url 'provider_dashboard' %}">← بازگشت به داشبورد</a></p>
+{% endblock %}

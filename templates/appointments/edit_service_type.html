@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}ویرایش خدمت{% endblock %}
+{% block content %}
+<h2>✏️ ویرایش نوع خدمت: {{ service.name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>نام خدمت:</label>
+    <input type="text" name="name" value="{{ service.name }}" required><br>
+    <label>مدت زمان (دقیقه):</label>
+    <input type="number" name="duration_minutes" value="{{ service.duration_minutes }}" min="1" step="1" required><br>
+    <label>قیمت (تومان):</label>
+    <input type="number" name="price" value="{{ service.price }}" min="0" step="1000" required><br>
+    <input type="submit" value="ذخیره تغییرات">
+</form>
+<p><a href="{% url 'manage_service_types' %}">← بازگشت به لیست خدمات</a></p>
+{% endblock %}

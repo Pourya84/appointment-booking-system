@@ -1,0 +1,9 @@
+{% if appointments %}
+<ul>
+    {% for apt in appointments %}
+    <li>{{ apt.time }} - {{ apt.customer.username }} ({{ apt.get_status_display }})</li>
+    {% endfor %}
+</ul>
+{% else %}
+<span>—</span>
+{% endif %}

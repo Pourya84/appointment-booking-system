@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}پنل مدیریت{% endblock %}
+{% block content %}
+<h2>📊 پنل مدیریت سایت</h2>
+
+<h3>👥 مشتریان</h3>
+<table>
+    <thead><tr><th>نام کاربری</th><th>ایمیل</th><th>تلفن</th></tr></thead>
+    <tbody>
+        {% for user in customers %}
+        <tr><td>{{ user.username }}</td><td>{{ user.email|default:"---" }}</td><td>{{ user.phone_number|default:"---" }}</td></tr>
+        {% empty %}
+        <tr><td colspan="3">هیچ مشتری ای یافت نشد.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>👨‍⚕️ ارائه‌دهندگان</h3>
+<table>
+    <thead><tr><th>نام کاربری</th><th>ایمیل</th><th>تلفن</th></tr></thead>
+    <tbody>
+        {% for user in providers %}
+        <tr><td>{{ user.username }}</td><td>{{ user.email|default:"---" }}</td><td>{{ user.phone_number|default:"---" }}</td></tr>
+        {% empty %}
+        <tr><td colspan="3">هیچ ارائه‌دهنده ای یافت نشد.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>📅 همه نوبت‌ها</h3>
+<table>
+    <thead>
+        <tr><th>مشتری</th><th>ارائه‌دهنده</th><th>تاریخ</th><th>زمان</th><th>وضعیت</th></tr>
+    </thead>
+    <tbody>
+        {% for apt in appointments %}
+        <tr>
+            <td>{{ apt.customer.username }}</td>
+            <td>{{ apt.provider.username }}</td>
+            <td>{{ apt.date }}</td>
+            <td>{{ apt.time }}</td>
+            <td>{{ apt.get_status_display }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">هیچ نوبتی یافت نشد.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

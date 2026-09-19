@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}پیام‌ها{% endblock %}
+{% block content %}
+<h2>📬 پیام‌های شما</h2>
+
+{# دکمه علامت‌گذاری همه به عنوان خوانده شده #}
+<form method="post" action="{% url 'notifications:mark_all_as_read' %}" style="display: inline; margin-bottom: 15px;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-warning">✅ همه را خوانده شده علامت بزن</button>
+</form>
+
+{% if notifications %}
+    <ul style="list-style: none; padding: 0;">
+    {% for n in notifications %}
+        <li style="padding: 10px; margin: 5px 0; border-radius: 8px; background: {% if not n.is_read %}#e9ecef{% else %}#fff{% endif %};">
+            {{ n.message }}
+            <small>({{ n.created_at|date:"Y/m/d H:i" }})</small>
+            {% if not n.is_read %}
+                <a href="{% url 'notifications:mark_as_read' n.id %}" class="btn">✓ خوانده شد</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>هیچ پیامی ندارید.</p>
+{% endif %}
+
+{# بازگشت به داشبورد مناسب با نقش کاربر #}
+{% if user.role == 'customer' %}
+    <p><a href="{% url 'customer_dashboard' %}">← بازگشت به داشبورد مشتری</a></p>
+{% elif user.role == 'provider' %}
+    <p><a href="{% url 'provider_dashboard' %}">← بازگشت به داشبورد ارائه‌دهنده</a></p>
+{% else %}
+    <p><a href="{% url 'home' %}">← بازگشت به صفحه اصلی</a></p>
+{% endif %}
+{% endblock %}

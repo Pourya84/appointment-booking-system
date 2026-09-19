@@ -1,0 +1,17 @@
+# ===== GitHub Linguist =====
+*.html linguist-vendored
+*.css linguist-vendored
+*.js linguist-vendored
+templates/** linguist-vendored
+static/** linguist-vendored
+staticfiles/** linguist-vendored
+*.json linguist-vendored
+*.md linguist-documentation
+
+# ===== Line Endings =====
+*.py text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+*.txt text eol=lf

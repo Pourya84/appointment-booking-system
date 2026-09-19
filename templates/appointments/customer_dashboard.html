@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}داشبورد مشتری{% endblock %}
+{% block content %}
+<h2>📋 داشبورد مشتری</h2>
+<h3>نوبت‌های من</h3>
+<table>
+    <thead>
+        <tr>
+            <th>ارائه‌دهنده</th>
+            <th>تاریخ</th>
+            <th>زمان</th>
+            <th>وضعیت</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for apt in appointments %}
+        <tr>
+            <td>{{ apt.provider.username }}</td>
+            <td>{{ apt.date }}</td>
+            <td>{{ apt.time }}</td>
+            <td>{{ apt.get_status_display }}</td>
+            <td>
+                {% if apt.status == 'pending' or apt.status == 'confirmed' %}
+                <form method="post" action="{% url 'cancel_appointment' apt.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-danger">لغو</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">هیچ نوبتی ندارید.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'create_appointment_step1' %}" class="btn">➕ رزرو نوبت جدید</a>
+{% endblock %}

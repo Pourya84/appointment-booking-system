@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}ثبت نام ارائه‌دهنده{% endblock %}
+{% block content %}
+<h2>📝 ثبت نام ارائه‌دهنده جدید</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>نام کاربری:</label>
+    <input type="text" name="username" required><br>
+
+    <label>ایمیل:</label>
+    <input type="email" name="email" required placeholder="example@gmail.com"><br>
+
+    <label>رمز عبور:</label>
+    <input type="password" name="password1" required><br>
+
+    <label>تکرار رمز:</label>
+    <input type="password" name="password2" required><br>
+
+    <label>شماره تلفن:</label>
+    <input type="text" name="phone_number" placeholder="اختیاری"><br>
+
+    <input type="submit" value="ثبت نام">
+</form>
+<p>قبلاً ثبت نام کرده‌اید؟ <a href="{% url 'login' %}">ورود</a></p>
+<p>برای ثبت نام به عنوان مشتری <a href="{% url 'users:signup' %}">کلیک کنید</a></p>
+{% endblock %}

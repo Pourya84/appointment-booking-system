@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}افزودن ساعت کاری{% endblock %}
+{% block content %}
+<h2>افزودن ساعت کاری جدید</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>روز هفته:</label>
+    <select name="day_of_week">
+        <option value="0">شنبه</option>
+        <option value="1">یکشنبه</option>
+        <option value="2">دوشنبه</option>
+        <option value="3">سه‌شنبه</option>
+        <option value="4">چهارشنبه</option>
+        <option value="5">پنج‌شنبه</option>
+        <option value="6">جمعه</option>
+    </select><br>
+    <label>ساعت شروع:</label><input type="time" name="start_time" required><br>
+    <label>ساعت پایان:</label><input type="time" name="end_time" required><br>
+    <input type="submit" value="ذخیره">
+</form>
+<p><a href="{% url 'manage_schedules' %}">← بازگشت به لیست ساعات کاری</a></p>
+{% endblock %}

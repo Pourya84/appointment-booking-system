@@ -1,0 +1,26 @@
+# ===== Django Core =====
+Django==5.2.11
+asgiref==3.11.1
+sqlparse==0.5.5
+tzdata==2025.3
+
+# ===== Django Apps =====
+djangorestframework==3.17.1
+drf-yasg==1.21.15
+django-filter==25.2
+django-cors-headers==4.9.0
+
+# ===== Database =====
+psycopg2-binary==2.9.10
+dj-database-url==2.2.0
+
+# ===== Background Tasks & Caching =====
+APScheduler==3.11.2
+django-redis==7.0.0
+redis==8.0.1
+
+# ===== Files =====
+pillow==12.2.0
+
+# ===== Environment =====
+python-dotenv==1.0.1

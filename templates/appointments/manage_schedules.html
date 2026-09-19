@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}مدیریت ساعات کاری{% endblock %}
+{% block content %}
+<h2>🕒 مدیریت ساعات کاری من</h2>
+<a href="{% url 'add_schedule' %}" class="btn">➕ افزودن ساعت جدید</a>
+<table>
+    <thead>
+        <tr>
+            <th>روز هفته</th>
+            <th>شروع</th>
+            <th>پایان</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in schedules %}
+        <tr>
+            <td>{{ s.get_day_of_week_display }}</td>
+            <td>{{ s.start_time }}</td>
+            <td>{{ s.end_time }}</td>
+            <td>
+                <form method="post" action="{% url 'delete_schedule' s.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-danger">🗑 حذف</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">هیچ ساعت کاری ثبت نشده است.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p><a href="{% url 'provider_dashboard' %}">← بازگشت به داشبورد</a></p>
+{% endblock %}

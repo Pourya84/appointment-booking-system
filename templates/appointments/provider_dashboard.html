@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}داشبورد ارائه‌دهنده{% endblock %}
+{% block content %}
+<h2>👨‍⚕️ داشبورد ارائه‌دهنده</h2>
+
+<div style="margin-bottom: 20px;">
+    <a href="{% url 'manage_service_types' %}" class="btn">📦 مدیریت انواع خدمات</a>
+    <a href="{% url 'manage_schedules' %}" class="btn">🕒 مدیریت ساعات کاری</a>
+    <a href="{% url 'provider_calendar' %}" class="btn">📅 تقویم پیشرفته</a>
+</div>
+
+<h3>نوبت‌های دریافتی</h3>
+<table>
+    <thead>
+        <tr>
+            <th>مشتری</th>
+            <th>تاریخ</th>
+            <th>زمان</th>
+            <th>نوع خدمت</th>
+            <th>وضعیت</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for apt in appointments %}
+        <tr>
+            <td>{{ apt.customer.username }}</a></td>
+            <td>{{ apt.date }}</a></td>
+            <td>{{ apt.time }}</a></td>
+            <td>{{ apt.service_type.name|default:"---" }}</a></td>
+            <td>{{ apt.get_status_display }}</a></td>
+            <td>
+                {% if apt.status == 'pending' %}
+                <form method="post" action="{% url 'confirm_appointment' apt.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">✅ تایید</button>
+                </form>
+                <form method="post" action="{% url 'reject_appointment' apt.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-danger">❌ رد</button>
+                </form>
+                {% elif apt.status == 'confirmed' %}
+                <form method="post" action="{% url 'cancel_appointment' apt.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-danger">لغو نوبت</button>
+                </form>
+                {% endif %}
+            </a>
+        </a>
+        {% empty %}
+        <tr>
+            <td colspan="6">هیچ نوبتی ندارید.</a>
+        </a>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

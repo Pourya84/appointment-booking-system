@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}ویرایش پروفایل{% endblock %}
+{% block content %}
+<h2>✏️ ویرایش پروفایل</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>نام کاربری:</label>
+    <input type="text" name="username" value="{{ user.username }}" required><br>
+    <label>ایمیل:</label>
+    <input type="email" name="email" value="{{ user.email|default:'' }}"><br>
+    <label>شماره تلفن:</label>
+    <input type="text" name="phone_number" value="{{ user.phone_number|default:'' }}"><br>
+    <input type="submit" value="ذخیره تغییرات">
+</form>
+<p><a href="{% url 'users:password_change' %}">تغییر رمز عبور</a></p>
+<p><a href="
+    {% if user.role == 'customer' %}
+        {% url 'customer_dashboard' %}
+    {% elif user.role == 'provider' %}
+        {% url 'provider_dashboard' %}
+    {% else %}
+        {% url 'home' %}
+    {% endif %}
+">← بازگشت به داشبورد</a></p>
+{% endblock %}
