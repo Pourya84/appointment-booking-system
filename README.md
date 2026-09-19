@@ -110,49 +110,49 @@ Frontend پروژه با **Django Templates** و **CSS** ساخته شده و ب
 appointment-booking-system/
 │
 ├── core/
-│   ├── settings.py
-│   └── urls.py
+│ ├── settings.py
+│ └── urls.py
 │
 ├── users/
-│   ├── models.py
-│   ├── views.py
-│   ├── forms.py
-│   ├── managers.py
-│   ├── decorators.py
-│   └── urls.py
+│ ├── models.py
+│ ├── views.py
+│ ├── forms.py
+│ ├── managers.py
+│ ├── decorators.py
+│ └── urls.py
 │
 ├── appointments/
-│   ├── api/
-│   │   └── v1/
-│   │       ├── views.py
-│   │       ├── serializers.py
-│   │       ├── permissions.py
-│   │       └── urls.py
-│   │
-│   ├── models/
-│   │   ├── appointment.py
-│   │   ├── schedule.py
-│   │   └── service_type.py
-│   │
-│   ├── services.py
-│   ├── repositories.py
-│   ├── views_html.py
-│   ├── admin.py
-│   ├── urls.py
-│   └── tests/
+│ ├── api/
+│ │ └── v1/
+│ │ ├── views.py
+│ │ ├── serializers.py
+│ │ ├── permissions.py
+│ │ └── urls.py
+│ │
+│ ├── models/
+│ │ ├── appointment.py
+│ │ ├── schedule.py
+│ │ └── service_type.py
+│ │
+│ ├── services.py
+│ ├── repositories.py
+│ ├── views_html.py
+│ ├── admin.py
+│ ├── urls.py
+│ └── tests/
 │
 ├── notifications/
-│   ├── models.py
-│   ├── signals.py
-│   ├── views.py
-│   ├── context_processors.py
-│   └── urls.py
+│ ├── models.py
+│ ├── signals.py
+│ ├── views.py
+│ ├── context_processors.py
+│ └── urls.py
 │
 ├── templates/
 ├── static/
 ├── manage.py
 └── requirements.txt
-```
+
 
 ---
 
@@ -195,138 +195,91 @@ appointment-booking-system/
 ```bash
 git clone https://github.com/Pourya84/appointment-booking-system.git
 cd appointment-booking-system
-```
 
-### ۲. ساخت محیط مجازی
 
-**Windows:**
-```bash
+۲. ساخت محیط مجازی
+Windows:
+
+bash
 python -m venv venv
 venv\Scripts\activate
-```
+Linux / macOS:
 
-**Linux / macOS:**
-```bash
+bash
 python3 -m venv venv
 source venv/bin/activate
-```
-
-### ۳. نصب وابستگی‌ها
-```bash
+۳. نصب وابستگی‌ها
+bash
 pip install -r requirements.txt
-```
-
-### ۴. تنظیم PostgreSQL
-
+۴. تنظیم PostgreSQL
 یک دیتابیس PostgreSQL ایجاد کنید و اطلاعات اتصال دیتابیس را در تنظیمات پروژه قرار دهید. سپس Migrationها را اجرا کنید:
 
-```bash
+bash
 python manage.py migrate
-```
-
-### ۵. ایجاد کاربر ادمین
-```bash
+۵. ایجاد کاربر ادمین
+bash
 python manage.py createsuperuser
-```
-
-### ۶. اجرای پروژه
-```bash
+۶. اجرای پروژه
+bash
 python manage.py runserver
-```
-
 پروژه پس از اجرا از آدرس زیر در دسترس خواهد بود:
 
-```
+text
 http://127.0.0.1:8000/
-```
+📡 REST API
+Base URL: /api/v1/
 
----
-
-## 📡 REST API
-
-**Base URL:** `/api/v1/`
-
-| Method | Endpoint | توضیح |
-|--------|----------|-------|
-| `POST` | `/appointments/` | ایجاد نوبت |
-| `GET` | `/appointments/my-appointments/` | نوبت‌های مشتری |
-| `GET` | `/appointments/provider-appointments/` | نوبت‌های ارائه‌دهنده |
-| `POST` | `/appointments/{id}/cancel/` | لغو نوبت |
-| `POST` | `/appointments/{id}/confirm/` | تأیید نوبت |
-| `POST` | `/appointments/{id}/reject/` | رد نوبت |
-| `GET` | `/appointments/available-slots/{provider_id}/{date}/` | زمان‌های آزاد |
-| `GET` | `/service-types/` | لیست خدمات |
-
-### 📖 API Documentation
-
-| سرویس | آدرس |
-|--------|------|
-| Swagger UI | `/swagger/` |
-| ReDoc | `/redoc/` |
-| OpenAPI JSON | `/swagger.json` |
-
----
-
-## 🧪 اجرای تست‌ها
-
+Method	Endpoint	توضیح
+POST	/appointments/	ایجاد نوبت
+GET	/appointments/my-appointments/	نوبت‌های مشتری
+GET	/appointments/provider-appointments/	نوبت‌های ارائه‌دهنده
+POST	/appointments/{id}/cancel/	لغو نوبت
+POST	/appointments/{id}/confirm/	تأیید نوبت
+POST	/appointments/{id}/reject/	رد نوبت
+GET	/appointments/available-slots/{provider_id}/{date}/	زمان‌های آزاد
+GET	/service-types/	لیست خدمات
+📖 API Documentation
+سرویس	آدرس
+Swagger UI	/swagger/
+ReDoc	/redoc/
+OpenAPI JSON	/swagger.json
+🧪 اجرای تست‌ها
 اجرای تمام تست‌ها:
-```bash
+
+bash
 python manage.py test
-```
-
 تست اپلیکیشن appointments:
-```bash
+
+bash
 python manage.py test appointments
-```
-
 تست کاربران:
-```bash
+
+bash
 python manage.py test users
-```
-
 تست اعلان‌ها:
-```bash
+
+bash
 python manage.py test notifications
-```
-
 اجرای یک تست مشخص:
-```bash
+
+bash
 python manage.py test appointments.tests.test_edge_cases
-```
 
----
 
-## 🌐 مسیرهای اصلی
+🌐 مسیرهای اصلی
 
-| بخش | مسیر |
-|------|------|
-| Home | `/` |
-| Django Admin | `/admin/` |
-| Admin Dashboard | `/users/admin/dashboard/` |
-| Customer Dashboard | `/app/customer/dashboard/` |
-| Create Appointment | `/app/customer/create/` |
-| Provider Dashboard | `/app/provider/dashboard/` |
-| Provider Calendar | `/app/provider/calendar/` |
-| Schedules | `/app/provider/schedules/` |
-| Service Types | `/app/provider/service-types/` |
-| Notifications | `/notifications/` |
-| Password Change | `/password-change/` |
-| Password Reset | `/password-reset/` |
-| Swagger | `/swagger/` |
-| ReDoc | `/redoc/` |
-```
-
-### 🔧 تغییرات اعمال‌شده (بدون تغییر در محتوا):
-
-| مورد | توضیح |
-|------|-------|
-| **Badges** | سه بج Python, Django, DRF در ابتدای فایل اضافه شد |
-| **جداکننده‌ها** | `---` بین بخش‌های اصلی برای خوانایی بیشتر |
-| **جدول‌ها** | نقش‌ها، تکنولوژی‌ها، الگوها، APIها و مسیرها به جدول تبدیل شدند |
-| **بلوک‌های کد** | تمام دستورات و مسیرها در ` ``` ` قرار گرفتند |
-| **آیکون‌ها** | آیکون‌های مناسب به هر بخش اضافه شد (📅, 🛠️, 🏗️, 🔐 و ...) |
-| **Bold** | تأکید روی کلمات کلیدی |
-| **چک‌لیست** | بخش امنیت به `- ✅` تبدیل شد |
-| **زیرعنوان‌ها** | استفاده از `###` برای زیربخش‌ها |
-
-حالا README شما هم حرفه‌ای‌تر و هم خواناتر است، بدون اینکه محتوای اصلی تغییر کرده باشد. 🎯
+بخش	مسیر
+Home	/
+Django Admin	/admin/
+Admin Dashboard	/users/admin/dashboard/
+Customer Dashboard	/app/customer/dashboard/
+Create Appointment	/app/customer/create/
+Provider Dashboard	/app/provider/dashboard/
+Provider Calendar	/app/provider/calendar/
+Schedules	/app/provider/schedules/
+Service Types	/app/provider/service-types/
+Notifications	/notifications/
+Password Change	/password-change/
+Password Reset	/password-reset/
+Swagger	/swagger/
+ReDoc	/redoc/
