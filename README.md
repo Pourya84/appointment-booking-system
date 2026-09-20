@@ -310,6 +310,7 @@ Authentication و Permission با نقش‌های متفاوت
 
 ### 📬 ارتباط با من
 📧 Email: amirkhah1384@gmail.com
+
 💬 Telegram: @proGrammerORproGamer
 
 در حال حاضر به دنبال فرصت‌های شغلی Junior Django / Python Backend هستم و از فرصت‌های Remote، Full-time و Freelance استقبال می‌کنم.
