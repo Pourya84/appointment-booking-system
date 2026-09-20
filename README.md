@@ -142,36 +142,36 @@ Frontend پروژه با **Django Templates** و **CSS** ساخته شده و ب
 ```bash
 git clone https://github.com/Pourya84/appointment-booking-system.git
 cd appointment-booking-system
+
 ۲. ساخت محیط مجازی
 ویندوز:
-
-bash
 python -m venv venv
 venv\Scripts\activate
-Linux / macOS:
 
-bash
+Linux / macOS:
 python3 -m venv venv
 source venv/bin/activate
+
 ۳. نصب وابستگی‌ها
-bash
 pip install -r requirements.txt
+
 ۴. تنظیم PostgreSQL
 یک دیتابیس PostgreSQL ایجاد کنید و اطلاعات اتصال دیتابیس را در settings.py قرار دهید. سپس Migrationها را اجرا کنید:
 
-bash
 python manage.py migrate
+
 ۵. ایجاد کاربر ادمین
-bash
 python manage.py createsuperuser
+
 ۶. اجرای پروژه
-bash
 python manage.py runserver
 بعد از اجرای سرور، پروژه از آدرس زیر در دسترس خواهد بود:
 
-text
 http://127.0.0.1:8000/
-📡 REST API
+```
+
+### 📡 REST API
+```bash
 Base URL: /api/v1/
 
 Method	Endpoint	توضیح
@@ -306,26 +306,10 @@ Authentication و Permission با نقش‌های متفاوت
 
 رعایت ساختار ماژولار برای پروژه
 
-🔮 برنامه‌های بعدی
-چند موردی که قصد دارم در ادامه روی پروژه انجام بدهم:
+```
 
-□ اضافه کردن Docker و docker-compose
-□ افزایش پوشش تست‌ها
-□ اضافه کردن GitHub Actions و CI
-□ آماده‌سازی پروژه برای Deployment
-□ افزودن Redis برای Cache و Celery برای کارهای زمان‌بندی‌شده
-□ پیاده‌سازی احراز هویت JWT برای API
-□ بهبود رابط کاربری و افزودن JavaScript در بخش‌های ضروری
-🤝 مشارکت
-این پروژه در درجه اول یک پروژه شخصی و Portfolio است، اما اگر پیشنهادی برای بهتر شدن کد یا ساختار پروژه دارید، خوشحال می‌شوم آن را ببینم.
-
-📄 مجوز
-این پروژه تحت مجوز MIT منتشر شده است. برای جزئیات بیشتر فایل LICENSE را ببینید.
-
-📬 ارتباط با من
+### 📬 ارتباط با من
 📧 Email: amirkhah1384@gmail.com
-
 💬 Telegram: @proGrammerORproGamer
-
 
 در حال حاضر به دنبال فرصت‌های شغلی Junior Django / Python Backend هستم و از فرصت‌های Remote، Full-time و Freelance استقبال می‌کنم.
